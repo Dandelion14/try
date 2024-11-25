@@ -75,6 +75,7 @@
     <button onclick="convertToPascal()">Pascal Case</button>
     <button onclick="convertToSnake()">Snake Case</button>
     <button onclick="convertToUpper()">Upper Case</button>
+    <button onclick="convertToCamel()">Camel Case</button>
     <div class="output" id="output">Converted text will appear here</div>
   </div>
 
@@ -99,6 +100,17 @@
     function convertToUpper() {
       const input = document.getElementById('textInput').value;
       const result = input.toUpperCase();
+      document.getElementById('output').textContent = result || 'No text entered';
+    }
+
+    function convertToCamel() {
+      const input = document.getElementById('textInput').value;
+      const result = input
+        .split(/[\s_]+/) // Split by spaces or underscores
+        .map((word, index) => 
+          index === 0 ? word.toLowerCase() : word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+        )
+        .join('');
       document.getElementById('output').textContent = result || 'No text entered';
     }
   </script>
